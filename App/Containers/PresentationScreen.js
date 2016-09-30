@@ -34,6 +34,7 @@ class PresentationScreen extends React.Component {
             <Text>Click This</Text>
           </TouchableOpacity>
           <TextInput
+            key={Inputs.toString()}
             multiline={true}
             onChange={(event) => {
               console.log('on change fired')
