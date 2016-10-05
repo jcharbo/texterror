@@ -17,18 +17,29 @@ class PresentationScreen extends React.Component {
   }
 
   render () {
+    const CELL_HEIGHT = 30
     let Inputs=[];
     for(var i=0;i<30;i++){
-      Inputs.push(<TextInput key={i} style={{borderWidth:1,height: 30,backgroundColor:'white'}} value={'box' + i}></TextInput>);
+      const someTopPadding = 200
+      const scrollTo = i * CELL_HEIGHT - someTopPadding
+      Inputs.push(
+        <TextInput
+          key={i}
+          style={{borderWidth:1,height: CELL_HEIGHT,backgroundColor:'white'}}
+          value={'box' + i}
+          onFocus={() => {
+            this.refs.scrolly.scrollTo({y: scrollTo})
+          }}
+        />
+      );
     }
     return (
       <View style={{flex:1}}>
-        <KeyboardAvoidingView style={{flex:1}}  behavior="padding" keyboardVerticalOffset={0}>
-        <ScrollView style={{flex:1}}>
-
-          {Inputs}
-        </ScrollView>
-          </KeyboardAvoidingView>
+        <KeyboardAvoidingView style={{flex:1}} behavior='padding'>
+          <ScrollView ref='scrolly' style={{flex:1}}>
+            {Inputs}
+          </ScrollView>
+        </KeyboardAvoidingView>
       </View>
     )
   }
