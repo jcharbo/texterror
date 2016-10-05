@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { ScrollView, Text, Image, View,TextInput,TouchableOpacity } from 'react-native'
+import { ScrollView, Text, Image, View,TextInput,TouchableOpacity,KeyboardAvoidingView } from 'react-native'
 import { Images } from '../Themes'
 import { connect } from 'react-redux'
 
@@ -13,42 +13,22 @@ class PresentationScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      inputs:['test\n','test\n','test\n','test\n','test\n','test\n','test\n','test\n','test\n']
     }
   }
 
   render () {
     let Inputs=[];
-    this.state.inputs.forEach(input => {
-      Inputs.push(input);
-    })
+    for(var i=0;i<30;i++){
+      Inputs.push(<TextInput key={i} style={{borderWidth:1,height: 30,backgroundColor:'white'}} value={'box' + i}></TextInput>);
+    }
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.clearLogo} style={styles.logo} />
-          </View>
+      <View style={{flex:1}}>
+        <KeyboardAvoidingView style={{flex:1}}  behavior="padding" keyboardVerticalOffset={0}>
+        <ScrollView style={{flex:1}}>
 
-          <TouchableOpacity onPress={() =>this.setState({inputs:['test']})} style={{backgroundColor:'green'}}>
-            <Text>Click This</Text>
-          </TouchableOpacity>
-          <TextInput
-            multiline={true}
-            onChange={(event) => {
-              console.log('on change fired')
-            }}
-            onContentSizeChange={(event) => {
-              console.log('on content size change fired')
-                this.setState({height:event.nativeEvent.contentSize.height})
-            }}
-            onChangeText={(text) => {
-          console.log('on change text fired')
-            }}
-            style={{borderWidth:1,height: this.state.height || 30,backgroundColor:'white'}}>{Inputs}</TextInput>
-
-
+          {Inputs}
         </ScrollView>
+          </KeyboardAvoidingView>
       </View>
     )
   }
