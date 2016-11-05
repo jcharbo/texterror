@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 
 import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import Test from './test'
 
 // Styles
 import styles from './Styles/PresentationScreenStyle'
@@ -23,12 +25,9 @@ class PresentationScreen extends React.Component {
     }
     return (
       <View style={{flex:1}}>
-        <KeyboardAvoidingView style={{flex:1}}  behavior="padding" keyboardVerticalOffset={0}>
-        <ScrollView style={{flex:1}}>
-
-          {Inputs}
-        </ScrollView>
-          </KeyboardAvoidingView>
+        <View style={{marginTop:200}}>
+          <Test level={1} />
+          </View>
       </View>
     )
   }
