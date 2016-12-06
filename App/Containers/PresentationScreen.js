@@ -7,6 +7,7 @@ import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Test from './test'
+import TestWrapper from './testwrapper'
 
 // Styles
 import styles from './Styles/PresentationScreenStyle'
@@ -25,9 +26,7 @@ class PresentationScreen extends React.Component {
     }
     return (
       <View style={{flex:1}}>
-        <View style={{marginTop:200}}>
-          <Test level={1} />
-          </View>
+        <ScrollView style={{backgroundColor:'blue'}} />
       </View>
     )
   }
